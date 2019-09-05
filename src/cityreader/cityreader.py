@@ -83,6 +83,13 @@ for c in cities:
 # Salt Lake City: (40.7774,-111.9301)
 
 # TODO Get latitude and longitude values from the user
+firstresponse = input("Please enter your first pair of points. Lat, Lon --Separate them by a comma: ").strip().split(",")
+cleanfirst = [i.strip() for i in firstresponse] #just messing around with getting rid of extra space.
+print(cleanfirst)
+
+secondresponse = input("Please enter your second pair of points. Lat, Lon --Separate them by a comma: ").strip().split(",")
+cleansecond = [i.strip() for i in secondresponse]
+print(cleansecond)
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
