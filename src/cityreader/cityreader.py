@@ -84,19 +84,43 @@ for c in cities:
 
 # TODO Get latitude and longitude values from the user
 firstresponse = input("Please enter your first pair of points. Lat, Lon --Separate them by a comma: ").strip().split(",")
-cleanfirst = [i.strip() for i in firstresponse] #just messing around with getting rid of extra space.
-print(cleanfirst)
+cleanfirst = [float(i.strip()) for i in firstresponse] #just messing around with getting rid of extra space.
 
 secondresponse = input("Please enter your second pair of points. Lat, Lon --Separate them by a comma: ").strip().split(",")
-cleansecond = [i.strip() for i in secondresponse]
-print(cleansecond)
+cleansecond = [float(i.strip()) for i in secondresponse]
+
+# Normalizing data so it's always a lower left, upper right.
+lowerleft = []
+upperright = []
+
+if cleanfirst[0] < cleansecond[0]:
+  lowerleft.append(cleanfirst[0])
+  upperright.append(cleansecond[0])
+else:
+  lowerleft.append(cleansecond[0])
+  upperright.append(cleanfirst[0])
+
+if cleanfirst[1] < cleanfirst[1]:
+  lowerleft.append(cleanfirst[1])
+  upperright.append(cleansecond[1])
+else:
+  lowerleft.append(cleansecond[1])
+  upperright.append(cleanfirst[1])
+
+print('lowerleft: ', lowerleft)
+print('upperright: ', upperright)
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
   within = []
 
   # TODO Ensure that the lat and lon valuse are all floats
+  if (type(lat1) == float and type(lon1) == float and type(lat2) == float and type(lon2) == float):
+    print('All input are floats! Moving forward.')
+
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
 
   return within
+
+cityreader_stretch(lowerleft[0], lowerleft[1], upperright[0], upperright[1], cities)
