@@ -83,38 +83,19 @@ for c in cities:
 # Salt Lake City: (40.7774,-111.9301)
 
 # TODO Get latitude and longitude values from the user
-firstresponse = input("Please enter your first pair of points. Lat, Lon --Separate them by a comma: ").strip().split(",")
-cleanfirst = [float(i.strip()) for i in firstresponse] #just messing around with getting rid of extra space.
+# firstresponse = input("Please enter your first pair of points. Lat, Lon --Separate them by a comma: ").strip().split(",")
+# cleanfirst = [float(i.strip()) for i in firstresponse] #just messing around with getting rid of extra space.
 
-secondresponse = input("Please enter your second pair of points. Lat, Lon --Separate them by a comma: ").strip().split(",")
-cleansecond = [float(i.strip()) for i in secondresponse]
-
-# Normalizing data so it's always a lower left, upper right.
-# lowerleft = []
-# upperright = []
-
-# if cleanfirst[0] < cleansecond[0]:
-#   lowerleft.append(cleanfirst[0])
-#   upperright.append(cleansecond[0])
-# else:
-#   lowerleft.append(cleansecond[0])
-#   upperright.append(cleanfirst[0])
-
-# if cleanfirst[1] < cleansecond[1]:
-#   lowerleft.append(cleanfirst[1])
-#   upperright.append(cleansecond[1])
-# else:
-#   lowerleft.append(cleansecond[1])
-#   upperright.append(cleanfirst[1])
-
-# print('lowerleft: ', lowerleft)
-# print('upperright: ', upperright)
+# secondresponse = input("Please enter your second pair of points. Lat, Lon --Separate them by a comma: ").strip().split(",")
+# cleansecond = [float(i.strip()) for i in secondresponse]
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
   within = []
   lowerleft = []
   upperright = []
+
+  # Normalizing the input data to be lowerleft, upperright coordinates
 
   if lat1 < lat2:
     lowerleft.append(lat1)
@@ -137,14 +118,14 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
   for city in cities:
-    print(city)
-    print(city.name, city.lat, city.lon)
+    # print(city)
+    # print(city.name, city.lat, city.lon)
     if (city.lat > lowerleft[0] and city.lat < upperright[0]):
-      print('Latitude is within the box.')
+      # print('Latitude is within the box.')
       if (city.lon > lowerleft[1] and city.lon < upperright[1]):
-        print('Longitude is within the box.')
+        # print('Longitude is within the box.')
         within.append(city)
 
   return within
 
-print(cityreader_stretch(cleanfirst[0], cleanfirst[1], cleansecond[0], cleansecond[1], cities))
+# print(cityreader_stretch(cleanfirst[0], cleanfirst[1], cleansecond[0], cleansecond[1], cities))
